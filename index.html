@@ -96,9 +96,107 @@
     <a href="menu.html" class="btn">Te amo 💚</a>
   </div>
 
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti 💜</title>
+
+  <!-- Fuente cursiva -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-image: url("img/fondo.png.jpg");
+      background-size: cover;
+      background-position: center;
+      border: 18px solid #c8a2c8;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .overlay {
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      animation: aparecer 1.5s ease forwards;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.8rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    .fecha {
+      margin-bottom: 35px;
+      font-size: 1.4rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      padding: 16px 45px;
+      border-radius: 40px;
+      border: none;
+      background: #ff5e9c;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background: #3cb371;
+      font-weight: 700;
+      transform: scale(1.08);
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+    <h1>Te adoro hoy y siempre</h1>
+    <p>de tu loquito enamorado</p>
+
+    <div class="fecha" id="fechaTexto"></div>
+
+    <a href="menu.html" class="btn">Te amo 💚</a>
+  </div>
+
   <script>
     // 👇 CAMBIA ESTA FECHA
-    const fechaInicio = new Date(2026, 2, 9); // marzo = 2
+    const fechaInicio = new Date(2025, 2, 9); // marzo = 2
 
     const hoy = new Date();
 
@@ -112,3 +210,7 @@
   </script>
 </body>
 </html>
+
+</body>
+</html>
+
