@@ -8,6 +8,12 @@
   <!-- Fuente cursiva -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
 
+.fecha {
+  margin-bottom: 30px;
+  font-size: 1.4rem;
+  opacity: 0.95;
+}
+  
   <style>
     * {
       margin: 0;
@@ -83,12 +89,31 @@
   </style>
 </head>
 
+<script>
+  // 👇 CAMBIA ESTA FECHA (cuando empezó todo)
+  const fechaInicio = new Date(2026, 2, 9); 
+  // el mes va de 0-11
+
+  const hoy = new Date();
+
+  const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
+
+  const inicioTexto = fechaInicio.toLocaleDateString('es-MX', opciones);
+  const hoyTexto = hoy.toLocaleDateString('es-MX', opciones);
+
+  document.getElementById("fechaTexto").innerHTML =
+    `Desde el <b>${inicioTexto}</b> — hoy es <b>${hoyTexto}</b><br>te extraño 💜`;
+</script>
+  
 <body>
   <div class="overlay">
     <h1>Te adoro hoy y siempre</h1>
     <p>de tu loquito enamorado</p>
+    
+<div class="fecha" id="fechaTexto"></div>
 
     <a href="menu.html" class="btn">Te amo 💚</a>
   </div>
 </body>
+
 </html>
