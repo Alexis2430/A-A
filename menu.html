@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestro espacio 💜</title>
+
+  <!-- Fuente cursiva -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #d9b3ff, #f3d1f4);
+      border: 18px solid #c8a2c8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .menu {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      color: #5a2a6e;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 16px;
+      border-radius: 35px;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: white;
+      color: #7a2c82;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background: #3cb371;
+      color: white;
+      font-weight: 700;
+      transform: scale(1.05);
+    }
+
+    .btn.disabled {
+      background: #e5e5e5;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    .btn.disabled:hover {
+      background: #e5e5e5;
+      transform: none;
+      font-weight: 600;
+    }
+    /* 💜 CORAZONES FLOTANDO */
+.corazon {
+  position: absolute;
+  bottom: -40px;
+  opacity: 0.85;
+  animation-name: flotar;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+}
+
+@keyframes flotar {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  30% {
+    transform: translate(15px, -30vh) rotate(8deg);
+  }
+  50% {
+    transform: translate(-20px, -55vh) rotate(-10deg);
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate(25px, -80vh) rotate(12deg);
+  }
+  100% {
+    transform: translate(-10px, -120vh) rotate(-6deg);
+    opacity: 0;
+  }
+}
+}
+  </style>
+</head>
+
+<body>
+  <div class="menu">
+    <h1>Para nosotros 💜</h1>
+
+    <button class="btn">❤️ El PRIMER GRAN PASO…</button>
+    <button class="btn">🤍 Cartitas</button>
+    <button class="btn">🤍 Fotitos</button>
+    <button class="btn">🤍 Mensajes bonitos</button>
+
+    <button class="btn disabled">🤍 Próximamente</button>
+    <button class="btn disabled">🤍 Próximamente</button>
+    <button class="btn disabled">🤍 Próximamente</button>
+  </div>
+<!-- 💥 Corazones flotando -->
+<span class="corazon" style="left: 5%;  font-size: 14px; animation-duration: 16s; animation-delay: 0s;">💜</span>
+<span class="corazon" style="left: 18%; font-size: 28px; animation-duration: 9s;  animation-delay: 3s;">💗</span>
+<span class="corazon" style="left: 27%; font-size: 20px; animation-duration: 13s; animation-delay: 1s;">💖</span>
+<span class="corazon" style="left: 41%; font-size: 32px; animation-duration: 11s; animation-delay: 5s;">💞</span>
+<span class="corazon" style="left: 52%; font-size: 16px; animation-duration: 18s; animation-delay: 2s;">💘</span>
+<span class="corazon" style="left: 64%; font-size: 24px; animation-duration: 10s; animation-delay: 6s;">💜</span>
+<span class="corazon" style="left: 73%; font-size: 18px; animation-duration: 14s; animation-delay: 4s;">💗</span>
+<span class="corazon" style="left: 86%; font-size: 30px; animation-duration: 12s; animation-delay: 7s;">💖</span>
+<span class="corazon" style="left: 94%; font-size: 15px; animation-duration: 20s; animation-delay: 1s;">💞</span>
+</body>
+</html>

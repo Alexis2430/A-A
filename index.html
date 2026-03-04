@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti 💜</title>
+
+  <!-- Fuente cursiva -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-image: url("img/fondo.png.jpg");
+      background-size: cover;
+      background-position: center;
+      border: 18px solid #c8a2c8; /* margen lila */
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .overlay {
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.8rem;
+      opacity: 0.9;
+      margin-bottom: 45px;
+    }
+
+    .btn {
+      padding: 16px 45px;
+      border-radius: 40px;
+      border: none;
+      background: #ff5e9c;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover,
+    .btn:active {
+      background: #3cb371; /* verde */
+      font-weight: 700;   /* negrito */
+      transform: scale(1.08);
+    }
+    @keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.overlay {
+  animation: aparecer 1.5s ease forwards;
+}
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+    <h1>Te adoro hoy y siempre</h1>
+    <p>de tu loquito enamorado</p>
+
+    <a href="menu.html" class="btn">Te amo 💚</a>
+  </div>
+</body>
+</html>
