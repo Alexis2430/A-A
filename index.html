@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para ti 💜</title>
 
-<head>
   <!-- Fuente cursiva -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -25,12 +24,6 @@
       font-family: 'Dancing Script', cursive;
     }
 
-    .fecha {
-      margin-bottom: 30px;
-      font-size: 1.4rem;
-      opacity: 0.95;
-    }
-
     .overlay {
       height: 100%;
       background: rgba(0, 0, 0, 0.55);
@@ -43,7 +36,7 @@
       padding: 20px;
       animation: aparecer 1.5s ease forwards;
     }
-<div class="fecha" id="fecha"></div>
+
     h1 {
       font-size: clamp(3rem, 7vw, 4.5rem);
       margin-bottom: 20px;
@@ -52,7 +45,13 @@
     p {
       font-size: 1.8rem;
       opacity: 0.9;
-      margin-bottom: 45px;
+      margin-bottom: 25px;
+    }
+
+    .fecha {
+      margin-bottom: 35px;
+      font-size: 1.4rem;
+      opacity: 0.95;
     }
 
     .btn {
@@ -86,37 +85,30 @@
     }
   </style>
 </head>
-</head>
 
-<script>
-  // 👇 CAMBIA ESTA FECHA (cuando empezó todo)
-  const fechaInicio = new Date(2026, 2, 9); 
-  // el mes va de 0-11
-
-  const hoy = new Date();
-
-  const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
-
-  const inicioTexto = fechaInicio.toLocaleDateString('es-MX', opciones);
-  const hoyTexto = hoy.toLocaleDateString('es-MX', opciones);
-
-  document.getElementById("fechaTexto").innerHTML =
-    `Desde el <b>${inicioTexto}</b> — hoy es <b>${hoyTexto}</b><br>te extraño 💜`;
-</script>
-  
 <body>
   <div class="overlay">
     <h1>Te adoro hoy y siempre</h1>
     <p>de tu loquito enamorado</p>
-    
-<div class="fecha" id="fechaTexto"></div>
+
+    <div class="fecha" id="fechaTexto"></div>
 
     <a href="menu.html" class="btn">Te amo 💚</a>
   </div>
+
+  <script>
+    // 👇 CAMBIA ESTA FECHA
+    const fechaInicio = new Date(2026, 2, 9); // marzo = 2
+
+    const hoy = new Date();
+
+    const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
+
+    const inicioTexto = fechaInicio.toLocaleDateString('es-MX', opciones);
+    const hoyTexto = hoy.toLocaleDateString('es-MX', opciones);
+
+    document.getElementById("fechaTexto").innerHTML =
+      `Desde el <b>${inicioTexto}</b> — hoy es <b>${hoyTexto}</b><br>te extraño 💜`;
+  </script>
 </body>
-
 </html>
-
-
-
-
