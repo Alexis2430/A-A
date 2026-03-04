@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El primer gran paso 💜</title>
+
+  <!-- Fuente cursiva -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image: url("img/fondo.png.jpg");
+      background-size: cover;
+      background-position: center;
+      border: 18px solid #c8a2c8;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .overlay {
+      min-height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 30px;
+      animation: aparecer 1.5s ease forwards;
+    }
+
+    .texto {
+      max-width: 900px;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .frase-final {
+      margin-top: 40px;
+      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+      font-weight: 700;
+      color: #ffb6d9;
+    }
+
+    .btn {
+      margin-top: 50px;
+      padding: 14px 40px;
+      border-radius: 40px;
+      border: none;
+      background: #ff5e9c;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #3cb371;
+      transform: scale(1.08);
+      font-weight: 700;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .pregunta-final {
+  margin-top: 70px;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 182, 217, 0.9);
+  animation: latido 1.8s infinite;
+}
+@keyframes latido {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+    <div class="texto">
+      Te conocí y, sin pedir permiso, mejoraste mi mundo.<br>
+      Lo hiciste más suave, más tranquilo, más habitable.<br><br>
+
+      Entendí que estar contigo era la paz que llevaba tiempo buscando,<br>
+      que tu presencia calmaba mi ansiedad<br>
+      como quien apaga una tormenta con solo existir.<br><br>
+
+      Y aun así, también me provocabas miedo…<br>
+      no del malo,<br>
+      sino del que nace cuando algo importa de verdad,<br>
+      cuando alguien tiene el poder de moverlo todo.<br><br>
+
+      Te amo en cada segundo que paso a tu lado,<br>
+      porque en cada gesto, en cada mirada,<br>
+      me confirmas que eres, sin duda,<br>
+      la mujer que siempre soñé tener cerquita de mí.<br><br>
+
+      Jamás quisiera soltarte.<br>
+      Nunca.
+    </div>
+
+    <div class="frase-final">
+      TE AMO DE AQUI AL FONDO DEL AMAR A BRINQUITOS DE MEDUZA,<br>
+      DE AHI A LA LUNA A PASITO DE TORTUGA<br>
+      Y DESPUES AL SOL A TROTE DE CARACOL
+    </div>
+<div class="pregunta-final">
+  ¿PUEDO SER TU NOVIO?
+</div>
+    <a href="menu.html" class="btn">Volver contigo 💜</a>
+  </div>
+</body>
+</html>
