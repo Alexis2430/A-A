@@ -5,24 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para ti 💜</title>
 
+<head>
   <!-- Fuente cursiva -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-   {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Dancing Script', cursive;
-    }
-
-    .fecha {
-      margin-bottom: 30px;
-      font-size: 1.4rem;
-      opacity: 0.95;
-    }
     * {
       margin: 0;
       padding: 0;
@@ -34,8 +21,14 @@
       background-image: url("img/fondo.png.jpg");
       background-size: cover;
       background-position: center;
-      border: 18px solid #c8a2c8; /* margen lila */
+      border: 18px solid #c8a2c8;
       font-family: 'Dancing Script', cursive;
+    }
+
+    .fecha {
+      margin-bottom: 30px;
+      font-size: 1.4rem;
+      opacity: 0.95;
     }
 
     .overlay {
@@ -48,6 +41,7 @@
       text-align: center;
       color: white;
       padding: 20px;
+      animation: aparecer 1.5s ease forwards;
     }
 
     h1 {
@@ -74,27 +68,24 @@
       font-weight: 500;
     }
 
-    .btn:hover,
-    .btn:active {
-      background: #3cb371; /* verde */
-      font-weight: 700;   /* negrito */
+    .btn:hover {
+      background: #3cb371;
+      font-weight: 700;
       transform: scale(1.08);
     }
-    @keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.overlay {
-  animation: aparecer 1.5s ease forwards;
-}
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
+</head>
 </head>
 
 <script>
@@ -125,5 +116,6 @@
 </body>
 
 </html>
+
 
 
