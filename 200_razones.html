@@ -107,6 +107,49 @@ transform:translateY(-200px) scale(1.5);
 opacity:0;
 }
 }
+  <style>
+
+.brillo-final{
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #ff4da6;
+  text-align: center;
+  animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo{
+  from{
+    text-shadow: 0 0 5px #ff4da6,
+                 0 0 10px #ff4da6,
+                 0 0 20px #ff99cc;
+  }
+  to{
+    text-shadow: 0 0 10px #ff66b3,
+                 0 0 20px #ff66b3,
+                 0 0 40px #ffb3d9;
+  }
+}
+.brillo-final{
+font-size:1.5em;
+font-weight:bold;
+color:#ff4da6;
+text-align:center;
+animation:brillo 2s infinite alternate;
+}
+
+@keyframes brillo{
+from{
+text-shadow:0 0 5px #ff4da6,
+0 0 10px #ff4da6,
+0 0 20px #ff99cc;
+}
+to{
+text-shadow:0 0 10px #ff66b3,
+0 0 20px #ff66b3,
+0 0 40px #ffb3d9;
+}
+}
+</style>
 </style>
 </head>
 
@@ -133,59 +176,470 @@ Volver contigo
 </a>
 
 </div>
-
 <script>
-
-let indice = 0;
 
 const razones = [
 
-"Porque tu sonrisa tiene la extraña habilidad de arreglar mi mundo incluso en los días más grises.",
+"Porque tu sonrisa tiene la extraña capacidad de arreglar mi mundo incluso en los días más grises.",
 
-"Porque cuando estoy contigo todo se siente más tranquilo, como si el mundo por fin bajara la voz.",
+"Porque cuando estoy contigo todo se siente más tranquilo, como si el ruido del mundo desapareciera un momento.",
 
-"Porque tus ojos tienen esa forma misteriosa de hacerme sentir en casa.",
+"Porque tus ojos tienen algo que me hace querer quedarme mirándolos más tiempo del que debería.",
 
-"Porque incluso en silencio logras decirme más de lo que muchas palabras podrían.",
+"Porque contigo aprendí que la paz también puede tener nombre y apellido.",
 
-"Porque apareciste en mi vida justo cuando mi corazón necesitaba aprender a latir diferente."
+"Porque incluso en silencio logras hacerme sentir acompañado.",
 
+"Porque tu forma de ser ilumina los lugares donde antes solo había dudas.",
+
+"Porque contigo descubrí que el amor no siempre hace ruido, a veces simplemente se siente.",
+
+"Porque tu risa es una de mis canciones favoritas sin importar cuántas veces la escuche.",
+
+"Porque cuando tomas mi mano siento que todo en mi mundo encuentra su lugar.",
+
+"Porque desde que llegaste a mi vida, el futuro se ve mucho más bonito."
+  
+"Porque cuando hablo contigo siento que mi corazón por fin tiene a alguien que lo entiende de verdad.",
+
+"Porque contigo puedo ser yo mismo sin miedo a que mis rarezas espanten a alguien.",
+
+"Porque en tus palabras siempre encuentro calma cuando mi mente se llena de ruido.",
+
+"Porque tu presencia convierte los momentos simples en recuerdos que quiero guardar para siempre.",
+
+"Porque contigo aprendí que la confianza también puede sentirse como un abrazo invisible.",
+
+"Porque cuando me miras siento que el mundo se detiene solo para dejarnos existir un momento más.",
+
+"Porque contigo las conversaciones nunca se sienten vacías; siempre tienen alma.",
+
+"Porque tu forma de escuchar me hace sentir importante incluso en las cosas más pequeñas.",
+
+"Porque cuando estoy contigo no siento que tenga que huir de nada.",
+
+"Porque de alguna manera encontraste la forma de conectar con mi corazón sin siquiera intentarlo."  
+
+"Porque desde que llegaste a mi vida, incluso los días comunes empezaron a sentirse especiales.",
+
+"Porque contigo aprendí que el amor no siempre llega haciendo ruido, a veces llega en silencio y se queda para siempre.",
+
+"Porque tu presencia me enseñó que la tranquilidad también puede vivirse junto a alguien.",
+
+"Porque antes de conocerte no sabía que alguien podía cambiar tanto mi manera de ver el mundo.",
+
+"Porque apareciste justo cuando mi corazón necesitaba recordar que todavía podía sentir bonito.",
+
+"Porque contigo entendí que amar también es sentirse seguro en los brazos de alguien.",
+
+"Porque tu forma de estar en mi vida hizo que muchas de mis dudas empezaran a desaparecer.",
+
+"Porque desde que llegaste, mis pensamientos tienen un lugar al que siempre quieren volver: tú.",
+
+"Porque sin darte cuenta empezaste a convertirte en una parte importante de mis días.",
+
+"Porque contigo descubrí que el amor verdadero no pesa… más bien se siente como hogar."  
+
+"Porque cuando se trata de ti, esperar no se siente como perder tiempo, se siente como cuidar algo valioso.",
+
+"Porque mi corazón entendió que algunas personas llegan para quedarse, aunque el camino hacia ellas tome tiempo.",
+
+"Porque si el destino necesita paciencia para juntarnos bien, entonces estoy dispuesto a dársela.",
+
+"Porque hay amores que valen la prisa, pero contigo descubrí que también existen los que valen la espera.",
+
+"Porque si el tiempo es la prueba del amor, entonces no me importa esperar lo que haga falta por ti.",
+
+"Porque contigo aprendí que amar también es respetar los momentos y los tiempos del otro.",
+
+"Porque si al final del camino estás tú, entonces cualquier espera vale completamente la pena.",
+
+"Porque mi cariño por ti no tiene prisa, solo tiene ganas de quedarse.",
+
+"Porque cuando alguien importa de verdad, esperar no es una carga… es una promesa silenciosa.",
+
+"Porque si amar es caminar hacia alguien, entonces no me importa que el camino sea largo mientras sea hacia ti."  
+
+"Porque tu sonrisa aparece justo en los momentos en los que más la necesito.",
+
+"Porque la forma en la que hablas tiene algo que siempre logra calmarme.",
+
+"Porque incluso los momentos simples se vuelven especiales cuando los comparto contigo.",
+
+"Porque hay algo en tu forma de ser que hace que todo a tu alrededor se sienta más bonito.",
+
+"Porque tu risa tiene la capacidad de contagiar felicidad sin siquiera intentarlo.",
+
+"Porque cuando dices mi nombre siento que tiene un significado más especial.",
+
+"Porque tu manera de mirar transmite más cariño del que muchas palabras podrían explicar.",
+
+"Porque hay gestos tuyos tan pequeños que quizá no notes… pero para mí significan mucho.",
+
+"Porque incluso en los días normales logras hacer que mi corazón se sienta afortunado.",
+
+"Porque eres de esas personas que, con solo existir, hacen que la vida se sienta más cálida."
+
+"Porque cuando imagino el futuro, por primera vez no siento miedo… porque te imagino en él.",
+
+"Porque a tu lado el mañana deja de sentirse incierto y empieza a sentirse esperanzador.",
+
+"Porque contigo entendí que el futuro no da miedo cuando se camina junto a la persona correcta.",
+
+"Porque cuando pienso en lo que viene, siempre termino pensando en ti.",
+
+"Porque mi corazón aprendió que los sueños se sienten más posibles cuando estás a mi lado.",
+
+"Porque no sé exactamente cómo será el futuro, pero sí sé que me gustaría vivirlo contigo.",
+
+"Porque incluso en la incertidumbre, tu presencia me hace sentir tranquilo.",
+
+"Porque no puedo imaginar los años que vienen sin imaginarte caminando conmigo.",
+
+"Porque contigo el futuro no se siente como algo que temer, sino como algo que esperar con ilusión.",
+
+"Porque si el tiempo sigue avanzando, lo único que espero es seguir encontrándote en cada etapa de mi vida."  
+  
+"Porque tus ojitos se enchinan cuando sonríes y en ese momento siento que el mundo se vuelve más bonito.",
+
+"Porque hay algo en tu sonrisa que siempre logra desarmarme.",
+
+"Porque ese pequeño triángulo de lunares en tu cara es uno de mis lugares favoritos en el universo.",
+
+"Porque tus ojos tienen una forma de brillar cuando estás feliz que es imposible ignorar.",
+
+"Porque incluso cuando intentas no sonreír, tus ojitos te delatan.",
+
+"Porque la forma en la que frunces la frente cuando te enojas me parece adorable, aunque sé que no debería decírtelo en ese momento.",
+
+"Porque cada uno de tus gestos tiene algo que me hace querer mirarte un poco más.",
+
+"Porque tus diferentes tonos de gloss siempre logran llamar mi atención sin importar cuál uses.",
+
+"Porque hay algo en tu manera de arreglarte que siempre me deja pensando lo bonita que eres.",
+
+"Porque tu cara tiene pequeños detalles que para mí se sienten únicos.",
+
+"Porque cuando hablas y te emocionas, tus expresiones lo dicen todo antes que tus palabras.",
+
+"Porque tu sonrisa cambia un poco dependiendo de cómo te sientes, y me encanta notar esas pequeñas diferencias.",
+
+"Porque la forma en que tus ojos reaccionan a las cosas bonitas me hace querer mostrarte más del mundo.",
+
+"Porque incluso cuando te enojas un poquito, sigues viéndote increíblemente tierna.",
+
+"Porque tu forma de acomodar las cosas cuando quieres que todo esté organizado me parece muy tuya.",
+
+"Porque tu amor por tener todo en orden dice mucho de la persona tan especial que eres.",
+
+"Porque hay algo muy lindo en la manera en que te concentras cuando estás acomodando algo.",
+
+"Porque cuando buscas calor en mis manitas siento que mi lugar está justo ahí, contigo.",
+
+"Porque cuando nuestras manos se encuentran siento que todo está exactamente donde debería estar.",
+
+"Porque todos esos pequeños detalles tuyos hacen que seas imposible de olvidar."
+  
+"Porque amo cada segundo que paso contigo, incluso los que parecen simples.",
+
+"Porque contigo aprendí que los momentos pequeños pueden convertirse en recuerdos enormes.",
+
+"Porque amo cuando vamos a Constitución aunque sepamos que tardaremos media hora más en llegar a casa.",
+
+"Porque esos minutos extra contigo siempre valen completamente la pena.",
+
+"Porque acompañarte a Amalinalco se siente más como una aventura que como un viaje.",
+
+"Porque cualquier camino se vuelve especial cuando voy contigo.",
+
+"Porque incluso llegar tarde a casa vale la pena si el motivo fue pasar más tiempo contigo.",
+
+"Porque esos momentos donde el tiempo se nos va sin darnos cuenta son de mis favoritos.",
+
+"Porque nuestro primer beso fue tan real que hasta terminamos enfermándonos, y aun así no cambiaría ese momento por nada.",
+
+"Porque ese primer beso imperfecto terminó siendo uno de los recuerdos más perfectos para mí.",
+
+"Porque en el examen de química explicabas todo lo que hacías como si fuera un tutorial de YouTube.",
+
+"Porque incluso en medio de un examen lograste sacarme una sonrisa.",
+
+"Porque tus comentarios espontáneos hacen que cualquier momento sea más divertido.",
+
+"Porque tomar tu mano siempre se siente como encontrar un lugar seguro.",
+
+"Porque cada vez que nuestras manos se encuentran siento una paz difícil de explicar.",
+
+"Porque tu pequeña adicción al sudoku me parece increíblemente adorable.",
+
+"Porque me encanta verte concentrada resolviendo uno.",
+
+"Porque cuando hablo contigo puedo mostrar mis partes más vulnerables sin sentir miedo.",
+
+"Porque cuando te conté sobre Giovanni no me juzgaste, solo me diste tu mano para apoyarme.",
+
+"Porque en ese momento entendí que contigo no solo hay amor, también hay comprensión."
+
+"Porque amo que escuches mis cosas nerds sin aburrirte ni alejarte.",
+
+"Porque contigo puedo hablar de cualquier tema raro que se me ocurra y aun así te quedas escuchando.",
+
+"Porque me encanta contarte datos curiosos y ver tu reacción.",
+
+"Porque haces que incluso mis intereses más raros se sientan importantes.",
+
+"Porque escucharme hablar de lo que me gusta es tu forma silenciosa de demostrar cariño.",
+
+"Porque amo ir descubriendo cada pequeño detalle de quién eres.",
+
+"Porque mientras más te conozco, más razones encuentro para quererte.",
+
+"Porque hay algo increíble en aprender cosas nuevas sobre ti.",
+
+"Porque tu forma de decir “ALEXIS” en público con ese tonito siempre logra llamar mi atención.",
+
+"Porque cuando dices mi nombre de esa manera siento algo difícil de explicar.",
+
+"Porque hay momentos donde solo escuchar tu voz ya mejora mi día.",
+
+"Porque amo la forma en la que me haces sentir visto.",
+
+"Porque siento que nos conocimos justo cuando tenía que pasar.",
+
+"Porque todo tuvo que acomodarse para que nuestros caminos se cruzaran.",
+
+"Porque a pesar de los momentos difíciles supimos seguir adelante.",
+
+"Porque juntos encontramos la forma de salir a flote.",
+
+"Porque nuestra historia no ha sido perfecta, pero sí muy real.",
+
+"Porque contigo aprendí que los problemas también se pueden enfrentar en equipo.",
+
+"Porque tenerte en mi vida es una de las cosas que más agradezco.",
+
+"Porque desde que llegaste, mi vida tiene algo especial que antes no estaba."  
+
+"Porque eres una necia de primera cuando algo te importa.",
+
+"Porque cuando te aferras a un objetivo haces todo lo posible por lograrlo.",
+
+"Porque tu determinación es una de las cosas que más admiro de ti.",
+
+"Porque cuando decides algo, el mundo parece tener que acomodarse a tu voluntad.",
+
+"Porque tu forma de luchar por lo que quieres me inspira.",
+
+"Porque tienes una singularidad que no he visto en nadie más.",
+
+"Porque tu forma de ser es tan única que sería imposible reemplazarla.",
+
+"Porque nunca intentas ser alguien que no eres.",
+
+"Porque tu autenticidad es una de las cosas más valiosas que tienes.",
+
+"Porque ser tú misma siempre ha sido más importante para ti que encajar con los demás.",
+
+"Porque cuando no me siento bien siempre encuentras la forma de hacerme reír.",
+
+"Porque tienes un talento especial para cambiar mi ánimo.",
+
+"Porque incluso en mis días pesados logras sacarme una sonrisa.",
+
+"Porque contigo hasta los momentos difíciles se sienten más ligeros.",
+
+"Porque me encanta que tampoco te gusten los mariscos, igual que a mí.",
+
+"Porque esos pequeños gustos compartidos nos hacen sentir más conectados.",
+
+"Porque hay algo bonito en descubrir que coincidimos hasta en las cosas simples.",
+
+"Porque tu forma de ver la vida tiene algo que siempre me llama la atención.",
+
+"Porque contigo aprendí que la autenticidad es una de las cosas más bonitas que puede tener una persona.",
+
+"Porque todo lo que te hace diferente también es exactamente lo que te hace especial."
+
+"Porque te amo cuando estás de buenas.",
+
+"Porque también te amo cuando estás de malas.",
+
+"Porque te amo cuando estás de buen humor.",
+
+"Porque incluso cuando estás de mal humor sigo queriendo estar contigo.",
+
+"Porque te amo cuando te ríes sin parar.",
+
+"Porque te amo cuando te pones seria.",
+
+"Porque te amo cuando te sientes segura de ti misma.",
+
+"Porque te amo incluso cuando dudas un poco de ti.",
+
+"Porque te amo cuando te pones celosa.",
+
+"Porque te amo cuando me miras con esa confianza que solo tú tienes.",
+
+"Porque te amo cuando entiendes algo y te emociona.",
+
+"Porque te amo cuando algo no te queda claro y haces esa carita de concentración.",
+
+"Porque te amo cuando estás feliz.",
+
+"Porque te amo en tus buenos momentos.",
+
+"Porque también te amo en tus momentos difíciles.",
+
+"Porque te amo en cada segundo que paso contigo.",
+
+"Porque te amo hoy.",
+
+"Porque te voy a amar mañana.",
+
+"Porque te amaré en cada día que venga después.",
+
+"Porque mi amor por ti no depende de cómo esté el día.",
+
+"Porque te amo aunque a veces andes toda mugrosita y despeinada.",
+
+"Porque incluso en esos momentos sigues siendo tú, y eso es lo que amo.",
+
+"Porque te amo desde aquí hasta el fondo del mar a brinquitos de medusa.",
+
+"Porque te amo de ahí a la luna a pasito de tortuga.",
+
+"Porque te amo de ahí al sol a trote de caracol.",
+
+"Porque te amo desde aquí hasta Canadá.",
+
+"Porque te amo hasta el día en que lleguemos juntos a nuestra boda.",
+
+"Porque te amo en cada etapa de nuestra historia.",
+
+"Porque te amo más allá de cualquier distancia o momento.",
+
+"Porque te amaré hasta mi último respirar."  
+
+"Porque contigo entendí que el amor también puede sentirse como hogar.",
+
+"Porque desde que llegaste a mi vida muchas cosas empezaron a tener más sentido.",
+
+"Porque contigo aprendí que amar a alguien también es admirarlo.",
+
+"Porque tu presencia hace que los días normales se vuelvan especiales.",
+
+"Porque contigo puedo ser yo mismo sin miedo.",
+
+"Porque tu forma de escuchar me hace sentir comprendido.",
+
+"Porque a tu lado descubrí una tranquilidad que no conocía antes.",
+
+"Porque contigo aprendí que el amor también está en los pequeños detalles.",
+
+"Porque cuando pienso en felicidad muchas veces termino pensando en ti.",
+
+"Porque eres una de las personas más importantes que han llegado a mi vida.",
+
+"Porque cada momento contigo se guarda en mi memoria como algo valioso.",
+
+"Porque incluso las conversaciones simples contigo significan mucho para mí.",
+
+"Porque tu forma de ver el mundo me hace querer ver más cosas contigo.",
+
+"Porque cuando sonríes siento que todo está bien por un momento.",
+
+"Porque tu existencia hace que el mundo se sienta un poco más bonito.",
+
+"Porque contigo aprendí que el amor verdadero no necesita ser perfecto.",
+
+"Porque nuestras diferencias también nos han enseñado mucho.",
+
+"Porque cada día que paso contigo confirma lo importante que eres para mí.",
+
+"Porque me haces querer ser una mejor persona.",
+
+"Porque contigo descubrí una versión de mí que no conocía.",
+
+"Porque tu compañía tiene una forma especial de calmar mi mente.",
+
+"Porque cuando estoy contigo el tiempo parece pasar diferente.",
+
+"Porque incluso en silencio tu presencia se siente suficiente.",
+
+"Porque has dejado una huella muy grande en mi vida.",
+
+"Porque muchas de mis memorias favoritas te incluyen a ti.",
+
+"Porque cada día contigo se convierte en parte de una historia que vale la pena contar.",
+
+"Porque no sé qué pasará en todos los años que vienen, pero sé que me alegra que estés en mi vida.",
+
+"Porque si tuviera que volver a empezar muchas cosas, igual elegiría conocerte.",
+
+"Porque entre todas las personas que existen en este mundo, tú eres una de las que más significan para mí.",
+
+"Porque te amo, y aunque hiciera una lista infinita de razones nunca podría cuantificar cuánto amor te tengo; no me alcanzarían cien vidas para explicarlo todo."  
+  
 ];
+  
 
+function escribirTexto(texto){
+
+let i = 0;
+const lugar = document.getElementById("razon");
+lugar.innerText = "";
+
+function escribir(){
+if(i < texto.length){
+lugar.innerText += texto.charAt(i);
+i++;
+setTimeout(escribir,25);
+}
+}
+
+escribir();
+
+}
+
+function crearCorazon(){
+
+const corazon = document.createElement("div");
+
+corazon.classList.add("corazon");
+
+corazon.innerHTML = "💜";
+
+corazon.style.left = Math.random()*100 + "vw";
+
+corazon.style.bottom = "0";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{
+corazon.remove();
+},3000);
+
+}
 function siguienteRazon(){
 
-  crearCorazon(); 
+crearCorazon();
 
-  indice++;
+const numero = Math.floor(Math.random() * razones.length);
 
-  if(indice < razones.length){
+escribirTexto(razones[numero]);
 
-    document.getElementById("razon").innerText = razones[indice];
+const lugar = document.getElementById("razon");
 
-    document.getElementById("contador").innerText =
-    "Razón " + (indice + 1) + " de 200";
-
-  } else {
-
-    document.getElementById("razon").innerText =
-    "Y aún así... siento que 200 razones no son suficientes para explicar por qué te amo.";
-
-    document.getElementById("contador").innerText = "∞ razones";
-
-  }
+if(numero === razones.length - 1){
+lugar.classList.add("brillo-final");
+}else{
+lugar.classList.remove("brillo-final");
 }
-
-{
-
-document.getElementById("razon").innerText =
-"Y aún así... siento que 200 razones no son suficientes para explicar por qué te amo.";
 
 document.getElementById("contador").innerText =
-"∞ razones";
+"Razón " + (numero + 1) + " de 200";
 
 }
-
 </script>
-
 </body>
 </html>
