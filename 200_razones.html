@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>200 razones para amarte 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+min-height:100vh;
+background-image:url("img/fondo.png.jpg");
+background-size:cover;
+background-position:center;
+border:18px solid #c8a2c8;
+font-family:'Dancing Script', cursive;
+}
+
+.overlay{
+min-height:100vh;
+background:rgba(0,0,0,0.6);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+text-align:center;
+color:white;
+}
+
+h1{
+font-size:clamp(3rem,7vw,4rem);
+margin-bottom:20px;
+}
+
+.contador{
+font-size:1.3rem;
+opacity:0.9;
+margin-bottom:30px;
+}
+
+#razon{
+max-width:800px;
+font-size:clamp(1.9rem,4vw,2.4rem);
+line-height:1.6;
+margin-bottom:40px;
+animation:aparecer 1s ease;
+}
+
+.btn{
+padding:14px 35px;
+border-radius:40px;
+border:none;
+background:#ff5e9c;
+color:white;
+font-size:1.3rem;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#3cb371;
+transform:scale(1.08);
+}
+
+.volver{
+margin-top:40px;
+text-decoration:none;
+color:white;
+font-size:1.2rem;
+opacity:0.9;
+}
+
+@keyframes aparecer{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.corazon{
+position:fixed;
+font-size:20px;
+animation:flotar 3s linear forwards;
+pointer-events:none;
+}
+
+@keyframes flotar{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-200px) scale(1.5);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>200 razones para amarte 💜</h1>
+
+<div class="contador" id="contador">
+Razón 1 de 200
+</div>
+
+<div id="razon">
+Porque tu sonrisa tiene la extraña habilidad de arreglar mi mundo incluso en los días más grises.
+</div>
+
+<button class="btn" onclick="siguienteRazon()">
+Descubrir otra razón 💜
+</button>
+
+<a href="menu.html" class="volver">
+Volver contigo
+</a>
+
+</div>
+
+<script>
+
+let indice = 0;
+
+const razones = [
+
+"Porque tu sonrisa tiene la extraña habilidad de arreglar mi mundo incluso en los días más grises.",
+
+"Porque cuando estoy contigo todo se siente más tranquilo, como si el mundo por fin bajara la voz.",
+
+"Porque tus ojos tienen esa forma misteriosa de hacerme sentir en casa.",
+
+"Porque incluso en silencio logras decirme más de lo que muchas palabras podrían.",
+
+"Porque apareciste en mi vida justo cuando mi corazón necesitaba aprender a latir diferente."
+
+];
+
+function siguienteRazon(){
+
+  crearCorazon(); 
+
+  indice++;
+
+  if(indice < razones.length){
+
+    document.getElementById("razon").innerText = razones[indice];
+
+    document.getElementById("contador").innerText =
+    "Razón " + (indice + 1) + " de 200";
+
+  } else {
+
+    document.getElementById("razon").innerText =
+    "Y aún así... siento que 200 razones no son suficientes para explicar por qué te amo.";
+
+    document.getElementById("contador").innerText = "∞ razones";
+
+  }
+}
+
+{
+
+document.getElementById("razon").innerText =
+"Y aún así... siento que 200 razones no son suficientes para explicar por qué te amo.";
+
+document.getElementById("contador").innerText =
+"∞ razones";
+
+}
+
+</script>
+
+</body>
+</html>
