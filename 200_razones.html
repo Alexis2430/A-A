@@ -157,6 +157,8 @@ Volver contigo
 </div>
 <script>
 
+let indiceActual = 0;
+
 const razones = [
 
 "Porque tu sonrisa tiene la extraña capacidad de arreglar mi mundo incluso en los días más grises.",
@@ -562,62 +564,53 @@ const razones = [
 ];
 
 function escribirTexto(texto){
+  let i = 0;
+  const lugar = document.getElementById("razon");
+  lugar.innerText = "";
 
-let i = 0;
-const lugar = document.getElementById("razon");
-lugar.innerText = "";
+  function escribir(){
+    if(i < texto.length){
+      lugar.innerText += texto.charAt(i);
+      i++;
+      setTimeout(escribir, 25);
+    }
+  }
 
-function escribir(){
-if(i < texto.length){
-lugar.innerText += texto.charAt(i);
-i++;
-setTimeout(escribir,25);
-}
-}
-
-escribir();
-
+  escribir();
 }
 
 function crearCorazon(){
+  const corazon = document.createElement("div");
+  corazon.classList.add("corazon");
+  corazon.innerHTML = "💜";
+  corazon.style.left = Math.random() * 100 + "vw";
+  corazon.style.bottom = "0";
+  document.body.appendChild(corazon);
 
-const corazon = document.createElement("div");
-
-corazon.classList.add("corazon");
-
-corazon.innerHTML = "💜";
-
-corazon.style.left = Math.random()*100 + "vw";
-
-corazon.style.bottom = "0";
-
-document.body.appendChild(corazon);
-
-setTimeout(()=>{
-corazon.remove();
-},3000);
-
+  setTimeout(() => {
+    corazon.remove();
+  }, 3000);
 }
+
 function siguienteRazon(){
+  crearCorazon();
 
-crearCorazon();
+  indiceActual = (indiceActual + 1) % razones.length;
 
-const numero = Math.floor(Math.random() * razones.length);
+  escribirTexto(razones[indiceActual]);
 
-escribirTexto(razones[numero]);
+  const lugar = document.getElementById("razon");
 
-const lugar = document.getElementById("razon");
+  if(indiceActual === razones.length - 1){
+    lugar.classList.add("brillo-final");
+  } else {
+    lugar.classList.remove("brillo-final");
+  }
 
-if(numero === razones.length - 1){
-lugar.classList.add("brillo-final");
-}else{
-lugar.classList.remove("brillo-final");
+  document.getElementById("contador").innerText = 
+    "Razón " + (indiceActual + 1) + " de 200";
 }
 
-document.getElementById("contador").innerText =
-"Razón " + (numero + 1) + " de 200";
-
-}
 </script>
 </body>
 </html>
