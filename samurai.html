@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samurai Sudoku 🤍</title>
+
+  <link rel="icon" href="data:,">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    :root{
+      --marco:#c8a2c8;
+      --lila1:#3b1f4a;
+      --lila2:#23102d;
+
+      --rojoPastel:#ff6b7a;
+      --rojoPastel2:#ff8a96;
+
+      --panel: rgba(255,255,255,.07);
+      --border: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.96);
+      --muted: rgba(255,255,255,.82);
+
+      --cell: rgba(255,255,255,.06);
+      --cellGiven: rgba(255,255,255,.10);
+      --cellBorder: rgba(255,255,255,.12);
+
+      --bad: rgba(255,107,122,.16);
+      --goodGlow: rgba(60,179,113,.25);
+    }
+
+    body{
+      min-height:100vh;
+      background: radial-gradient(900px 600px at 25% 20%, rgba(200,162,200,.35), transparent 60%),
+                  radial-gradient(800px 520px at 80% 30%, rgba(200,162,200,.22), transparent 55%),
+                  linear-gradient(160deg, var(--lila1), var(--lila2));
+      background-attachment: fixed;
+      border: 18px solid var(--marco);
+      font-family: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
+      color: var(--text);
+      padding: 22px 16px;
+      overflow-x:hidden;
+    }
+
+    @media (max-width: 520px){
+      body{ border-width: 10px; }
+    }
+
+    .wrap{
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display:grid;
+      gap: 14px;
+    }
+
+    header, .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.25);
+    }
+
+    h1{
+      font-size: clamp(2rem, 5.5vw, 3.1rem);
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+
+    @media (min-width: 980px){
+      .layout{ grid-template-columns: 420px 1fr; }
+    }
+
+    .btns{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 12px;
+    }
+
+    .btn{
+      display:block;
+      width:100%;
+      padding: 12px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+    .btn:hover, .btn:active{
+      background: linear-gradient(90deg, var(--rojoPastel), var(--rojoPastel2));
+      border-color: rgba(255,255,255,.22);
+      transform: scale(1.03);
+    }
+    .btn.secondary{ background: rgba(255,255,255,.06); }
+
+    .status{
+      margin-top: 10px;
+      color: var(--muted);
+      min-height: 3.4em;
+      line-height: 1.4;
+      font-size: 1.05rem;
+      white-space: pre-line;
+    }
+
+    .samuraiWrap{
+      overflow:auto;
+      padding-bottom: 6px;
+    }
+
+    .grid{
+      width: max-content;
+      display:grid;
+      grid-template-columns: repeat(21, 34px);
+      grid-template-rows: repeat(21, 34px);
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.10);
+    }
+
+    @media (max-width: 520px){
+      .grid{
+        grid-template-columns: repeat(21, 30px);
+        grid-template-rows: repeat(21, 30px);
+      }
+    }
+
+    .cell{
+      border-right: 1px solid var(--cellBorder);
+      border-bottom: 1px solid var(--cellBorder);
+      background: var(--cell);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .hole{
+      background: transparent;
+      border: none;
+    }
+
+    .given{ background: var(--cellGiven); }
+    .bad{ background: var(--bad) !important; }
+
+    input.cellInput{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: none;
+      text-align:center;
+      font-family: inherit;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      background: transparent;
+      caret-color: var(--rojoPastel);
+    }
+
+    .selected{
+      outline: 3px solid rgba(255, 107, 122, .45);
+      outline-offset: -3px;
+      background: rgba(255,107,122,.08);
+    }
+
+    .goodFlash{
+      animation: goodFlash .7s ease;
+    }
+    @keyframes goodFlash{
+      0%{ box-shadow: 0 0 0 rgba(60,179,113,0); }
+      35%{ box-shadow: 0 0 70px var(--goodGlow); }
+      100%{ box-shadow: 0 0 0 rgba(60,179,113,0); }
+    }
+
+    .pad{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 8px;
+    }
+
+    .key{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      padding: 12px 0;
+      text-align:center;
+      font-weight: 900;
+      font-size: 1.2rem;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .14s ease, background .18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .key:hover, .key:active{
+      background: linear-gradient(90deg, var(--rojoPastel), var(--rojoPastel2));
+      transform: translateY(1px);
+    }
+
+    .tinyLink{
+      margin-top: 10px;
+      text-align:center;
+    }
+    .tinyLink a{
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(255,255,255,.35);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header id="hdr">
+      <h1>Samurai Sudoku 🤍</h1>
+      <div class="sub">Modo PRO: 5 tableros con overlaps. “Resolver” usa solver real.</div>
+    </header>
+
+    <div class="layout">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;">
+          <div style="font-weight:800; font-size:1.15rem;">Puzzle: samuraisudoku.com</div>
+          <div style="opacity:.9; font-weight:700;" id="filled">0</div>
+        </div>
+
+        <div class="btns">
+          <button class="btn" id="new">Reiniciar puzzle 🤍</button>
+          <button class="btn secondary" id="check">Verificar (errores)</button>
+          <button class="btn secondary" id="solve">Resolver</button>
+          <a class="btn secondary" href="sudokus.html">Volver a Sudokus 🤍</a>
+          <a class="btn secondary" href="menu.html">Volver contigo 💜</a>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="pad" id="pad">
+          <div class="key" data-k="1">1</div><div class="key" data-k="2">2</div><div class="key" data-k="3">3</div>
+          <div class="key" data-k="4">4</div><div class="key" data-k="5">5</div><div class="key" data-k="6">6</div>
+          <div class="key" data-k="7">7</div><div class="key" data-k="8">8</div><div class="key" data-k="9">9</div>
+        </div>
+
+        <div class="tinyLink">
+          <a href="#" id="clear">Borrar casilla (⌫)</a>
+        </div>
+      </div>
+
+      <div class="card samuraiWrap">
+        <div class="grid" id="grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const gridEl = document.getElementById("grid");
+    const statusEl = document.getElementById("status");
+    const filledEl = document.getElementById("filled");
+    const headerEl = document.getElementById("hdr");
+
+    const LS_KEY = "love_samurai_solver_v1";
+
+    function keyOf(R,C){ return `${R},${C}`; }
+
+    function isActiveCell(R,C){
+      const TL = (R>=0 && R<=8 && C>=0 && C<=8);
+      const TR = (R>=0 && R<=8 && C>=12 && C<=20);
+      const CEN= (R>=6 && R<=14 && C>=6 && C<=14);
+      const BL = (R>=12 && R<=20 && C>=0 && C<=8);
+      const BR = (R>=12 && R<=20 && C>=12 && C<=20);
+      return TL || TR || CEN || BL || BR;
+    }
+
+    function regionsFor(R,C){
+      const out = [];
+      const defs = [
+        ["TL",0,0],
+        ["TR",0,12],
+        ["C", 6,6],
+        ["BL",12,0],
+        ["BR",12,12]
+      ];
+      for(const [name,r0,c0] of defs){
+        if(R>=r0 && R<r0+9 && C>=c0 && C<c0+9) out.push({name,r0,c0});
+      }
+      return out;
+    }
+
+    // ---- GIVENS extraídos de tu imagen #6
+    // Coordenadas globales (R,C) en la malla 21x21, solo para celdas activas.
+    const GIVENS = {
+      // TL (0..8,0..8)
+      "0,0":9, "0,2":6, "0,4":2, "0,8":7,
+      "1,1":8, "1,2":1, "1,3":7, "1,4":4, "1,6":9,
+      "2,1":7, "2,4":5,
+      "3,2":2, "3,6":5, "3,7":9, "3,8":3,
+      "4,0":3, "4,3":2,
+      "5,4":8, "5,6":1, "5,8":2,
+      "6,0":6, "6,1":9, "6,9":7, "6,11":5, // overlap center row0 col0? (ver abajo)
+      "7,2":5, "7,5":4, "7,7":6, "7,9":3, "7,11":8,
+      "8,3":6, "8,4":1,
+
+      // TR (0..8,12..20)
+      "0,12":8, "0,16":5, "0,18":9, "0,20":6,
+      "1,14":1, "1,16":6, "1,17":9, "1,18":8, "1,19":5,
+      "2,16":4, "2,18":2,
+      "3,12":6, "3,13":9, "3,14":2, "3,18":7,
+      "4,16":5, "4,20":9,
+      "5,12":1, "5,14":5, "5,16":3,
+
+      // Center (6..14,6..14)  (solo se ven: "6 4" arriba-izq del centro y "3 8" arriba-der del centro, y "5 7" abajo-izq, "4 9" abajo-der)
+      // En tu imagen: en la parte alta del centro aparecen: fila 0 del centro: "6 4" en las dos primeras
+      "9,6":6, "9,7":4,
+      "9,12":3, "9,13":8,
+      // fila 6 del centro (abajo-izq del centro): "5 7"
+      "12,6":5, "12,7":7,
+      // abajo-der del centro: "4 9"
+      "12,12":4, "12,13":9,
+
+      // BL (12..20,0..8)
+      "15,3":5, "15,4":4,
+      "16,2":4, "16,5":8, "16,7":3, // "3" en el centro-left de la fila
+      "16,9":4, "16,11":7, // parte central superior (por la cruz)
+      "17,0":3, "17,1":8, "17,9":1, "17,11":2,
+      "18,4":6, "18,6":8, "18,8":3,
+      "19,0":4, "19,3":7,
+      "20,2":6, "20,6":5, "20,7":4, "20,8":9,
+
+      // BR (12..20,12..20)
+      "14,15":6, "14,16":2,
+      "16,12":2, "16,14":3, "16,18":1,
+      "17,19":4, "17,20":8,
+      "18,14":4, "18,16":8,
+      "19,16":5, "19,20":9,
+      "20,12":5, "20,13":8, "20,14":9, "20,18":7,
+
+      // Centro abajo-derecha extras visibles:
+      "20,15":4, "20,18":9, "20,20":1
+    };
+
+    // NOTA: Algunos givens centrales/overlaps pueden requerir ajuste fino si algo no cuadra.
+    // El solver te avisará si hay contradicción.
+
+    // ---- State
+    const values = new Map(); // key -> 0..9
+    const fixed = new Set();
+    let selectedKey = null;
+
+    function buildGrid(){
+      gridEl.innerHTML = "";
+      values.clear();
+      fixed.clear();
+      selectedKey = null;
+
+      for(let R=0; R<21; R++){
+        for(let C=0; C<21; C++){
+          const cell = document.createElement("div");
+
+          if(!isActiveCell(R,C)){
+            cell.className = "cell hole";
+            gridEl.appendChild(cell);
+            continue;
+          }
+
+          const k = keyOf(R,C);
+          cell.className = "cell";
+          cell.dataset.key = k;
+
+          const input = document.createElement("input");
+          input.className = "cellInput";
+          input.inputMode = "numeric";
+          input.autocomplete = "off";
+          input.maxLength = 1;
+
+          const given = GIVENS[k] || 0;
+          if(given){
+            input.value = String(given);
+            input.disabled = true;
+            cell.classList.add("given");
+            values.set(k, given);
+            fixed.add(k);
+          } else {
+            input.value = "";
+            input.disabled = false;
+            values.set(k, 0);
+          }
+
+          cell.addEventListener("click", () => { setSelected(k); input.focus(); });
+          input.addEventListener("focus", () => setSelected(k));
+
+          input.addEventListener("input", (e) => {
+            const raw = e.target.value.replace(/[^1-9]/g, "");
+            e.target.value = raw;
+            values.set(k, raw ? Number(raw) : 0);
+            clearMarks();
+            updateFilled();
+            saveState();
+          });
+
+          input.addEventListener("keydown", (e) => {
+            if(e.key === "Backspace" || e.key === "Delete"){
+              if(!fixed.has(k)){
+                values.set(k, 0);
+                input.value = "";
+                clearMarks();
+                updateFilled();
+                saveState();
+              }
+            }
+          });
+
+          cell.appendChild(input);
+          gridEl.appendChild(cell);
+        }
+      }
+
+      updateFilled();
+      statusEl.textContent = "Listo 🤍 Si está bien cabrón, pícale a Resolver (puede tardar tantito).";
+      saveState();
+    }
+
+    function setSelected(k){
+      selectedKey = k;
+      [...gridEl.children].forEach(el => el.classList.remove("selected"));
+      const el = [...gridEl.children].find(x => x.dataset && x.dataset.key === k);
+      if(el) el.classList.add("selected");
+    }
+
+    function clearMarks(){
+      [...gridEl.children].forEach(el => el.classList.remove("bad"));
+    }
+
+    function updateFilled(){
+      let filled = 0, active = 0;
+      for(let R=0; R<21; R++){
+        for(let C=0; C<21; C++){
+          if(!isActiveCell(R,C)) continue;
+          active++;
+          const v = values.get(keyOf(R,C)) || 0;
+          if(v !== 0) filled++;
+        }
+      }
+      filledEl.textContent = `${filled}/${active}`;
+    }
+
+    function markErrors(){
+      clearMarks();
+      let errors = 0;
+
+      for(let R=0; R<21; R++){
+        for(let C=0; C<21; C++){
+          if(!isActiveCell(R,C)) continue;
+          const k = keyOf(R,C);
+          const v = values.get(k) || 0;
+          if(v === 0) continue;
+
+          const regs = regionsFor(R,C);
+          let okAll = true;
+
+          for(const reg of regs){
+            for(let cc=reg.c0; cc<reg.c0+9; cc++){
+              if(cc===C) continue;
+              if((values.get(keyOf(R,cc))||0) === v) okAll = false;
+            }
+            for(let rr=reg.r0; rr<reg.r0+9; rr++){
+              if(rr===R) continue;
+              if((values.get(keyOf(rr,C))||0) === v) okAll = false;
+            }
+            const br = reg.r0 + Math.floor((R - reg.r0)/3)*3;
+            const bc = reg.c0 + Math.floor((C - reg.c0)/3)*3;
+            for(let rr=br; rr<br+3; rr++){
+              for(let cc=bc; cc<bc+3; cc++){
+                if(rr===R && cc===C) continue;
+                if((values.get(keyOf(rr,cc))||0) === v) okAll = false;
+              }
+            }
+          }
+
+          if(!okAll){
+            const el = [...gridEl.children].find(x => x.dataset && x.dataset.key === k);
+            if(el) el.classList.add("bad");
+            errors++;
+          }
+        }
+      }
+
+      statusEl.textContent = errors === 0 ? "Sin conflictos detectados 🤍" : `Encontré ${errors} conflicto(s).`;
+    }
+
+    // ----- SOLVER (MRV backtracking)
+    function candidatesFor(key){
+      const [R,C] = key.split(",").map(Number);
+      const used = new Set();
+
+      for(const reg of regionsFor(R,C)){
+        // row
+        for(let cc=reg.c0; cc<reg.c0+9; cc++){
+          const v = values.get(keyOf(R,cc)) || 0;
+          if(v) used.add(v);
+        }
+        // col
+        for(let rr=reg.r0; rr<reg.r0+9; rr++){
+          const v = values.get(keyOf(rr,C)) || 0;
+          if(v) used.add(v);
+        }
+        // box
+        const br = reg.r0 + Math.floor((R - reg.r0)/3)*3;
+        const bc = reg.c0 + Math.floor((C - reg.c0)/3)*3;
+        for(let rr=br; rr<br+3; rr++){
+          for(let cc=bc; cc<bc+3; cc++){
+            const v = values.get(keyOf(rr,cc)) || 0;
+            if(v) used.add(v);
+          }
+        }
+      }
+
+      const out = [];
+      for(let n=1;n<=9;n++){
+        if(!used.has(n)) out.push(n);
+      }
+      return out;
+    }
+
+    function allEmptyKeys(){
+      const keys = [];
+      for(let R=0; R<21; R++){
+        for(let C=0; C<21; C++){
+          if(!isActiveCell(R,C)) continue;
+          const k = keyOf(R,C);
+          if((values.get(k) || 0) === 0) keys.push(k);
+        }
+      }
+      return keys;
+    }
+
+    function findMRVKey(){
+      let bestKey = null;
+      let bestCount = 10;
+      let bestCands = null;
+
+      for(const k of allEmptyKeys()){
+        const cands = candidatesFor(k);
+        if(cands.length === 0) return { key: k, cands: [] };
+        if(cands.length < bestCount){
+          bestCount = cands.length;
+          bestKey = k;
+          bestCands = cands;
+          if(bestCount === 1) break;
+        }
+      }
+      return { key: bestKey, cands: bestCands };
+    }
+
+    function isConsistent(){
+      // quick check: no conflicts among filled cells
+      for(let R=0; R<21; R++){
+        for(let C=0; C<21; C++){
+          if(!isActiveCell(R,C)) continue;
+          const k = keyOf(R,C);
+          const v = values.get(k) || 0;
+          if(!v) continue;
+
+          values.set(k, 0);
+          const ok = candidatesFor(k).includes(v);
+          values.set(k, v);
+          if(!ok) return false;
+        }
+      }
+      return true;
+    }
+
+    function solveBacktrack(){
+      const {key, cands} = findMRVKey();
+      if(!key) return true; // solved
+      if(cands.length === 0) return false;
+
+      for(const n of cands){
+        values.set(key, n);
+        if(solveBacktrack()) return true;
+        values.set(key, 0);
+      }
+      return false;
+    }
+
+    async function solveNow(){
+      clearMarks();
+      statusEl.textContent = "Resolviendo... 🤍 (aguanta tantito)";
+      await new Promise(r => setTimeout(r, 20)); // pinta el texto
+
+      if(!isConsistent()){
+        statusEl.textContent = "Este puzzle tiene contradicción (o algún given quedó mal transcrito). Mándame screenshot y lo ajusto 🤍";
+        return;
+      }
+
+      const ok = solveBacktrack();
+      if(!ok){
+        statusEl.textContent = "No pude resolverlo (puede ser transcripción o demasiado duro). Lo optimizo o corregimos givens 🤍";
+        return;
+      }
+
+      // paint solution to UI, lock inputs
+      for(let R=0; R<21; R++){
+        for(let C=0; C<21; C++){
+          if(!isActiveCell(R,C)) continue;
+          const k = keyOf(R,C);
+          const v = values.get(k) || 0;
+          const el = [...gridEl.children].find(x => x.dataset && x.dataset.key === k);
+          const input = el ? el.querySelector("input") : null;
+          if(input){
+            input.value = v ? String(v) : "";
+            input.disabled = true;
+          }
+        }
+      }
+
+      headerEl.classList.add("goodFlash");
+      setTimeout(() => headerEl.classList.remove("goodFlash"), 900);
+
+      statusEl.textContent = "Resuelto 🤍 (modo leyenda).";
+      updateFilled();
+      localStorage.removeItem(LS_KEY);
+    }
+
+    function clearSelected(){
+      if(!selectedKey || fixed.has(selectedKey)) return;
+      values.set(selectedKey, 0);
+      const el = [...gridEl.children].find(x => x.dataset && x.dataset.key === selectedKey);
+      const input = el ? el.querySelector("input") : null;
+      if(input) input.value = "";
+      clearMarks();
+      updateFilled();
+      saveState();
+    }
+
+    // keypad
+    document.getElementById("pad").addEventListener("click", (e) => {
+      const key = e.target.closest(".key");
+      if(!key || !selectedKey) return;
+      if(fixed.has(selectedKey)) return;
+
+      const n = Number(key.dataset.k);
+      values.set(selectedKey, n);
+
+      const el = [...gridEl.children].find(x => x.dataset && x.dataset.key === selectedKey);
+      const input = el ? el.querySelector("input") : null;
+      if(input) input.value = String(n);
+
+      clearMarks();
+      updateFilled();
+      saveState();
+    });
+
+    document.getElementById("clear").addEventListener("click", (e) => {
+      e.preventDefault();
+      clearSelected();
+    });
+
+    document.getElementById("new").addEventListener("click", () => {
+      localStorage.removeItem(LS_KEY);
+      buildGrid();
+    });
+
+    document.getElementById("check").addEventListener("click", markErrors);
+    document.getElementById("solve").addEventListener("click", solveNow);
+
+    // save/load
+    function saveState(){
+      const state = {
+        values: Array.from(values.entries()),
+      };
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+    }
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(!raw) return false;
+        const state = JSON.parse(raw);
+        buildGrid();
+
+        if(Array.isArray(state.values)){
+          for(const [k,v] of state.values){
+            if(!values.has(k)) continue;
+            if(fixed.has(k)) continue;
+            values.set(k, v);
+
+            const el = [...gridEl.children].find(x => x.dataset && x.dataset.key === k);
+            const input = el ? el.querySelector("input") : null;
+            if(input) input.value = v ? String(v) : "";
+          }
+          updateFilled();
+          statusEl.textContent = "Continuando tu Samurai guardado 🤍";
+        }
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    // init
+    if(!loadState()) buildGrid();
+  </script>
+</body>
+</html>
