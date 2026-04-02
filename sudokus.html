@@ -382,7 +382,7 @@
       "Te amo. Y tú también eres mi sudoku favorito 💜",
       "Si terminaste esto, te debo un beso.",
       "Eres demasiado pro. Yo nomás te admiro 🤍",
-      "Listo: misión cumplida. Ahora ven por abrazo 💜",
+      "Listo: misión cumplida. Ahora ven por abrazame 💜",
       "No sé qué me gusta más: tu mente o tu carita 🤍"
     ];
 
@@ -529,22 +529,44 @@
       updateFilled();
     }
 
-    function setSelected(r,c){
-      selected = {r,c};
-      [...boardEl.children].forEach((el, idx) => {
-        const rr = Math.floor(idx/9);
-        const cc = idx % 9;
-        el.classList.toggle("selected", rr === r && cc === c);
-      });
-    }
+function setSelected(r,c){
+  selected = {r,c};
 
-    function getCellEl(r,c){ return boardEl.children[r*9 + c]; }
-    function getInputEl(r,c){ return getCellEl(r,c).querySelector("input"); }
+  // evita error si aún no se construyó el tablero
+  if(!boardEl || boardEl.children.length !== 81) return;
 
-    function clearMarks(){
-      for(let r=0;r<9;r++) for(let c=0;c<9;c++) getCellEl(r,c).classList.remove("bad");
-      statusEl.textContent = "";
+  [...boardEl.children].forEach((el, idx) => {
+    const rr = Math.floor(idx/9);
+    const cc = idx % 9;
+    el.classList.toggle("selected", rr === r && cc === c);
+  });
+}
+
+function getCellEl(r,c){
+  const idx = r*9 + c;
+  return boardEl?.children?.[idx] || null;
+}
+
+function getInputEl(r,c){
+  const cell = getCellEl(r,c);
+  return cell ? cell.querySelector("input") : null;
+}
+
+function clearMarks(){
+  statusEl.textContent = "";
+
+  // si no hay tablero, no hagas nada
+  if(!boardEl || boardEl.children.length !== 81) return;
+
+  for(let r=0;r<9;r++){
+    for(let c=0;c<9;c++){
+      const cell = getCellEl(r,c);
+      if(cell) cell.classList.remove("bad");
     }
+  }
+}
+  statusEl.textContent = "";
+}
 
     function markErrors(){
       clearMarks();
@@ -557,7 +579,8 @@
           const ok = isValid(puzzle, r, c, v);
           puzzle[r][c] = v;
           if(!ok){
-            getCellEl(r,c).classList.add("bad");
+            const cell = getCellEl(r,c);
+            if(cell) cell.classList.add("bad");
             errors++;
           }
         }
@@ -677,17 +700,20 @@
       }
     }
 
-    // Actions
-    function newGame(){
-      stopTimer();
-      clearMarks();
-      solution = generateSolution();
-      puzzle = makePuzzleFromSolution(solution, difEl.value);
-      buildBoard();
-      statusEl.textContent = "Listo. Suerte 🤍";
-      localStorage.removeItem(LS_KEY);
-      saveState();
-    }
+  function newGame(){
+  stopTimer();
+
+  solution = generateSolution();
+  puzzle = makePuzzleFromSolution(solution, difEl.value);
+
+  buildBoard();      // primero crear celdas (81)
+  clearMarks();      // ahora sí puedes limpiar "bad"
+  setSelected(0,0);  // opcional: marca primera
+
+  statusEl.textContent = "Listo. Suerte 🤍";
+  localStorage.removeItem(LS_KEY);
+  saveState();
+}
 
     function solveNow(){
       for(let r=0;r<9;r++){
