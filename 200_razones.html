@@ -1,169 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>200 razones para amarte 💜</title>
 
-<title>200 RAZONES PARA AMARTE 💜</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
-  
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+  :root{
+    --marco:#c8a2c8;
+    --btn:#ff5e9c;
+    --btnHover:#3cb371;
+  }
 
-body{
-min-height:100vh;
-background-image:url("img/fondo.png.jpg");
-background-size:cover;
-background-position:center;
-border:18px solid #c8a2c8;
-font-family: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
-}
+  body{
+    min-height:100vh;
 
-.overlay{
-min-height:100vh;
-background:rgba(0,0,0,0.6);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:30px;
-text-align:center;
-color:white;
-}
+    /* Ojo: confirma el nombre real del archivo en /img */
+    background-image:url("img/fondo.jpg");
+    background-size:cover;
+    background-position:center;
+    background-attachment: fixed;
 
-h1{
-font-size:clamp(3rem,7vw,4rem);
-margin-bottom:20px;
-}
+    border:18px solid var(--marco);
+    font-family:'Cormorant Garamond', Georgia, "Times New Roman", serif;
+  }
 
-.contador{
-font-size:1.3rem;
-opacity:0.9;
-margin-bottom:30px;
-}
+  /* En celulares el borde grande se come espacio */
+  @media (max-width: 520px){
+    body{ border-width: 10px; }
+  }
 
-#razon{
-  max-width:800px;
-  font-size:clamp(1.9rem,4vw,2.4rem);
-  line-height:1.6;
-  margin-bottom:40px;
-  animation:aparecer 1s ease;
+  .overlay{
+    min-height:100vh;
+    background:rgba(0,0,0,0.62);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    text-align:center;
+    color:white;
+  }
 
-  white-space: pre-wrap;
-  letter-spacing: 0.2px;
-}
+  h1{
+    font-size:clamp(2.2rem,7vw,4rem);
+    margin-bottom:16px;
+    letter-spacing:.3px;
+  }
 
-.btn{
-padding:14px 35px;
-border-radius:40px;
-border:none;
-background:#ff5e9c;
-color:white;
-font-size:1.3rem;
-cursor:pointer;
-transition:0.3s;
-}
+  .contador{
+    font-size:1.2rem;
+    opacity:0.9;
+    margin-bottom:22px;
+  }
 
-.btn:hover{
-background:#3cb371;
-transform:scale(1.08);
-}
+  #razon{
+    max-width:860px;
+    font-size:clamp(1.5rem,4.1vw,2.35rem);
+    line-height:1.62;
+    margin-bottom:28px;
+    white-space: pre-wrap;
+    letter-spacing: 0.2px;
+    text-wrap: pretty;
+    animation: aparecer .6s ease;
+  }
 
-.volver{
-margin-top:40px;
-text-decoration:none;
-color:white;
-font-size:1.2rem;
-opacity:0.9;
-}
+  .btn{
+    padding:14px 34px;
+    border-radius:40px;
+    border:none;
+    background:var(--btn);
+    color:white;
+    font-size:1.2rem;
+    cursor:pointer;
+    transition: transform .18s ease, background .18s ease, filter .18s ease;
+  }
+  .btn:hover{
+    background:var(--btnHover);
+    transform:scale(1.06);
+  }
+  .btn:active{ transform: scale(1.02); }
 
-@keyframes aparecer{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-.corazon{
-position:fixed;
-font-size:20px;
-animation:flotar 3s linear forwards;
-pointer-events:none;
-}
+  .volver{
+    margin-top:26px;
+    text-decoration:none;
+    color:white;
+    font-size:1.15rem;
+    opacity:0.9;
+  }
+  .volver:hover{ opacity:1; text-decoration: underline; }
 
-@keyframes flotar{
-0%{
-transform:translateY(0) scale(1);
-opacity:1;
-}
-100%{
-transform:translateY(-200px) scale(1.5);
-opacity:0;
-}
-}
+  @keyframes aparecer{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
 
-.brillo-final{
-font-size:1.5em;
-font-weight:bold;
-color:#ff4da6;
-text-align:center;
-animation:brillo 2s infinite alternate;
-}
+  .corazon{
+    position:fixed;
+    font-size:20px;
+    animation: flotar 3s linear forwards;
+    pointer-events:none;
+    user-select:none;
+  }
+  @keyframes flotar{
+    0%{ transform:translateY(0) scale(1); opacity:1; }
+    100%{ transform:translateY(-220px) scale(1.55); opacity:0; }
+  }
 
-@keyframes brillo{
-from{
-text-shadow:0 0 5px #ff4da6,
-0 0 10px #ff4da6,
-0 0 20px #ff99cc;
-}
-to{
-text-shadow:0 0 10px #ff66b3,
-0 0 20px #ff66b3,
-0 0 40px #ffb3d9;
-}
-}
-
+  .brillo-final{
+    font-size:1.05em;
+    font-weight:700;
+    color:#ff4da6;
+    animation: brillo 1.6s infinite alternate;
+  }
+  @keyframes brillo{
+    from{
+      text-shadow: 0 0 6px #ff4da6, 0 0 14px #ff4da6, 0 0 24px #ff99cc;
+    }
+    to{
+      text-shadow: 0 0 10px #ff66b3, 0 0 20px #ff66b3, 0 0 40px #ffb3d9;
+    }
+  }
 </style>
 </head>
 
 <body>
+  <div class="overlay">
+    <h1>200 razones para amarte 💜</h1>
+    <div class="contador" id="contador">Cargando…</div>
 
-<div class="overlay">
+    <div id="razon"></div>
 
-<h1>200 pesos que me debes RAUL 💜</h1>
+    <button class="btn" id="btnSiguiente">Descubrir otra razón 💜</button>
 
-<div class="contador" id="contador">
-Razón 1 de 200
-</div>
+    <a href="menu.html" class="volver">Volver contigo</a>
+  </div>
 
-<div id="razon">
-"Porque tu sonrisa tiene la extraña habilidad de arreglar mi mundo incluso en los días más grises".
-</div>
-  
-<button class="btn" onclick="siguienteRazon()">
-Descubrir otra razón 💜
-</button>
-
-<a href="menu.html" class="volver">
-Volver contigo
-</a>
-
-</div>
 <script>
+  let indiceActual = 0;
 
-let indiceActual = 0;
-
-const razones = [
-
+  const razones = [
+    
 "Porque tu sonrisa tiene la extraña capacidad de arreglar mi mundo incluso en los días más grises.",
 
 "Porque cuando estoy contigo todo se siente más tranquilo, como si el ruido del mundo desapareciera un momento.",
@@ -563,57 +544,67 @@ const razones = [
 "Porque entre todas las personas que existen en este mundo, tú eres una de las que más significan para mí.",
 
 "Porque te amo, y aunque hiciera una lista infinita de razones nunca podría cuantificar cuánto amor te tengo; no me alcanzarían cien vidas para explicarlo todo.",
+  ];
 
-];
+  const total = razones.length; // <-- así no miente el contador
 
-function escribirTexto(texto){
-  let i = 0;
-  const lugar = document.getElementById("razon");
-  lugar.innerText = "";
+  const elRazon = document.getElementById("razon");
+  const elContador = document.getElementById("contador");
+  const btn = document.getElementById("btnSiguiente");
 
-  function escribir(){
-    if(i < texto.length){
-      lugar.innerText += texto.charAt(i);
-      i++;
-      setTimeout(escribir, 25);
+  function escribirTexto(texto){
+    let i = 0;
+    elRazon.classList.remove("brillo-final");
+    elRazon.innerText = "";
+
+    const speed = 18; // más suave
+    (function escribir(){
+      if(i < texto.length){
+        elRazon.innerText += texto.charAt(i);
+        i++;
+        setTimeout(escribir, speed);
+      }
+    })();
+  }
+
+  function crearCorazon(){
+    const corazon = document.createElement("div");
+    corazon.className = "corazon";
+    corazon.textContent = "💜";
+    corazon.style.left = (Math.random() * 100) + "vw";
+    corazon.style.bottom = "0";
+    corazon.style.filter = `drop-shadow(0 8px 18px rgba(255, 77, 141, .20))`;
+    document.body.appendChild(corazon);
+    setTimeout(() => corazon.remove(), 3000);
+  }
+
+  function render(){
+    escribirTexto(razones[indiceActual]);
+    elContador.innerText = `Razón ${indiceActual + 1} de ${total}`;
+
+    if(indiceActual === total - 1){
+      elRazon.classList.add("brillo-final");
     }
   }
 
-  escribir();
-}
-
-function crearCorazon(){
-  const corazon = document.createElement("div");
-  corazon.classList.add("corazon");
-  corazon.innerHTML = "💜";
-  corazon.style.left = Math.random() * 100 + "vw";
-  corazon.style.bottom = "0";
-  document.body.appendChild(corazon);
-
-  setTimeout(() => {
-    corazon.remove();
-  }, 3000);
-}
-
-function siguienteRazon(){
-  crearCorazon();
-
-  indiceActual = (indiceActual + 1) % razones.length;
-
-  escribirTexto(razones[indiceActual]);
-
-  const lugar = document.getElementById("razon");
-
-  if(indiceActual === razones.length - 1){
-    lugar.classList.add("brillo-final");
-  } else {
-    lugar.classList.remove("brillo-final");
+  function siguienteRazon(){
+    crearCorazon();
+    indiceActual = (indiceActual + 1) % total;
+    render();
   }
 
-  document.getElementById("contador").innerText = 
-    "Razón " + (indiceActual + 1) + " de 200";
-}
+  // Arranque: muestra la primera razón desde el array (no hardcode)
+  render();
 
+  btn.addEventListener("click", siguienteRazon);
+
+  // Extra: barra espaciadora también avanza (en compu)
+  window.addEventListener("keydown", (e) => {
+    if(e.code === "Space"){
+      e.preventDefault();
+      siguienteRazon();
+    }
+  });
 </script>
 </body>
 </html>
