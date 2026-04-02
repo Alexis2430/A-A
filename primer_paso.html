@@ -1,102 +1,165 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El primer gran paso 💜</title>
 
-  <!-- Fuente cursiva -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    :root{
+      --marco:#c8a2c8;
+      --lila1:#3b1f4a;
+      --lila2:#23102d;
+
+      --rojoPastel:#ff6b7a;
+      --rojoPastel2:#ff8a96;
+
+      --white: rgba(255,255,255,.96);
+      --pinkText:#ffb6d9;
     }
 
-    body {
+    body{
       min-height: 100vh;
-      background-image: url("img/fondo.png.jpg");
-      background-size: cover;
-      background-position: center;
-      border: 18px solid #c8a2c8;
-      font-family: 'Dancing Script', cursive;
+      background: radial-gradient(900px 600px at 25% 20%, rgba(200,162,200,.35), transparent 60%),
+                  radial-gradient(800px 520px at 80% 30%, rgba(200,162,200,.22), transparent 55%),
+                  linear-gradient(160deg, var(--lila1), var(--lila2));
+      border: 18px solid var(--marco);
+      font-family: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
+      color:#fff;
     }
 
-    .overlay {
+    @media (max-width: 520px){
+      body{ border-width: 10px; }
+    }
+
+    .overlay{
       min-height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 30px;
-      animation: aparecer 1.5s ease forwards;
+      background: rgba(0,0,0,0.35);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding: 34px 18px;
+      animation: aparecer 1.2s ease forwards;
+      position: relative;
+      overflow: hidden;
     }
 
-    .texto {
-      max-width: 900px;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      line-height: 1.6;
-      opacity: 0.95;
+    .texto{
+      max-width: 920px;
+      font-size: clamp(1.35rem, 3.6vw, 2.1rem);
+      line-height: 1.65;
+      opacity: 0.96;
+      text-wrap: pretty;
     }
 
-    .frase-final {
+    .frase-final{
       margin-top: 40px;
-      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+      font-size: clamp(1.45rem, 4vw, 2.2rem);
       font-weight: 700;
-      color: #ffb6d9;
+      color: var(--pinkText);
+      letter-spacing: .3px;
+      text-shadow: 0 14px 40px rgba(0,0,0,.35);
     }
 
-    .btn {
-      margin-top: 50px;
+    .pregunta-final{
+      margin-top: 62px;
+      font-size: clamp(2.3rem, 7vw, 4.2rem);
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255, 182, 217, 0.9);
+      animation: latido 1.8s infinite;
+    }
+
+    @keyframes latido{
+      0%,100%{ transform: scale(1); }
+      50%{ transform: scale(1.06); }
+    }
+
+    .btn{
+      margin-top: 46px;
+      display:inline-block;
       padding: 14px 40px;
       border-radius: 40px;
-      border: none;
-      background: #ff5e9c;
-      color: white;
-      font-size: 1.3rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      color: var(--white);
+
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor:pointer;
+      text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
+
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, filter .18s ease;
     }
 
-    .btn:hover {
-      background: #3cb371;
-      transform: scale(1.08);
-      font-weight: 700;
+    .btn:hover{
+      background: linear-gradient(90deg, var(--rojoPastel), var(--rojoPastel2));
+      border-color: rgba(255,255,255,.22);
+      transform: scale(1.06);
     }
 
-    @keyframes aparecer {
-      from {
+    .btn:active{
+      background: linear-gradient(90deg, var(--rojoPastel), var(--rojoPastel2));
+      border-color: rgba(255,255,255,.26);
+      transform: scale(1.03);
+      filter: brightness(0.98);
+    }
+
+    .btn:focus-visible{
+      outline: 3px solid rgba(255, 107, 122, .55);
+      outline-offset: 3px;
+    }
+
+    @keyframes aparecer{
+      from{ opacity: 0; transform: translateY(22px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+
+    /* 💜🤍 Confeti de corazones */
+    .confetti-heart{
+      position: fixed;
+      left: 0; top: 0;
+      pointer-events: none;
+      user-select: none;
+      z-index: 9999;
+
+      font-size: 18px;
+      opacity: 0.95;
+
+      transform: translate3d(var(--x, 0px), var(--y, 0px), 0) rotate(var(--r, 0deg));
+      animation: fall var(--d, 1600ms) ease-in forwards;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+      will-change: transform, opacity;
+    }
+
+    @keyframes fall{
+      0%{
         opacity: 0;
-        transform: translateY(30px);
+        transform: translate3d(var(--x, 0px), var(--y, 0px), 0) rotate(var(--r, 0deg)) scale(.9);
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      10%{ opacity: .98; }
+      100%{
+        opacity: 0;
+        transform: translate3d(calc(var(--x, 0px) + var(--dx, 0px)),
+                              calc(var(--y, 0px) + var(--dy, 520px)),
+                              0)
+                   rotate(calc(var(--r, 0deg) + 260deg))
+                   scale(1.25);
       }
     }
-    .pregunta-final {
-  margin-top: 70px;
-  font-size: clamp(3rem, 8vw, 4.5rem);
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 182, 217, 0.9);
-  animation: latido 1.8s infinite;
-}
-@keyframes latido {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.06);
-  }
-}
+
+    @media (prefers-reduced-motion: reduce){
+      .pregunta-final{ animation: none; }
+      .confetti-heart{ animation: none; opacity: 0; }
+    }
   </style>
 </head>
 
@@ -129,10 +192,58 @@
       DE AHI A LA LUNA A PASITO DE TORTUGA<br>
       Y DESPUES AL SOL A TROTE DE CARACOL
     </div>
-<div class="pregunta-final">
-  ¿PUEDO SER TU NOVIO?
-</div>
-    <a href="menu.html" class="btn">Volver contigo 💜</a>
+
+    <div class="pregunta-final" id="preguntaFinal">¿PUEDO SER TU NOVIO?</div>
+
+    <a href="menu.html" class="btn" id="btnVolver">Volver contigo 💜</a>
   </div>
+
+  <script>
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function dropHeartConfetti({
+      count = 40,
+      durationMin = 1200,
+      durationMax = 2100
+    } = {}){
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+
+      const hearts = ["💜","🤍","💗","💖","💞","💘"];
+      const startY = -20;
+
+      for(let i=0; i<count; i++){
+        const el = document.createElement("span");
+        el.className = "confetti-heart";
+        el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+        const x = rand(20, vw - 20);
+        const y = startY;
+        const dx = rand(-120, 120);
+        const dy = rand(vh * 0.55, vh * 0.95);
+        const r = rand(-40, 40);
+        const d = rand(durationMin, durationMax);
+
+        el.style.setProperty("--x", x + "px");
+        el.style.setProperty("--y", y + "px");
+        el.style.setProperty("--dx", dx + "px");
+        el.style.setProperty("--dy", dy + "px");
+        el.style.setProperty("--r", r + "deg");
+        el.style.setProperty("--d", d + "ms");
+        el.style.fontSize = rand(14, 28) + "px";
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), d + 200);
+      }
+    }
+    
+    window.addEventListener("load", () => {
+      setTimeout(() => dropHeartConfetti({ count: 48 }), 650);
+    });
+    
+    document.getElementById("preguntaFinal").addEventListener("click", () => {
+      dropHeartConfetti({ count: 36 });
+    });
+  </script>
 </body>
 </html>
