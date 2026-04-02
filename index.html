@@ -17,17 +17,19 @@
       --verde:#3cb371;
     }
 
-    body{
-      min-height:100vh;
-      background-image: url("img/fondo.png.jpg"); /* <- TU NOMBRE EXACTO */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+   body{
+  min-height: 100vh;
 
-      border: 18px solid var(--marco);
-      font-family: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
-    }
+  /* Fondo lila bonito (sin imagen) */
+  background: radial-gradient(900px 600px at 25% 20%, rgba(200,162,200,.35), transparent 60%),
+              radial-gradient(800px 520px at 80% 30%, rgba(200,162,200,.22), transparent 55%),
+              linear-gradient(160deg, #3b1f4a, #23102d);
 
+  background-attachment: fixed;
+
+  border: 18px solid #c8a2c8;
+  font-family: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
+}
     @media (max-width: 520px){
       body{ border-width: 10px; }
     }
