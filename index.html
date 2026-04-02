@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para ti 💜</title>
 
-  <!-- Misma letra que tu página anterior -->
+  <!-- Misma letra que la anterior -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -19,7 +19,7 @@
 
     body{
       min-height:100vh;
-      background-image: url("img/fondo.png.jpg"); /* <- ruta /img */
+      background-image: url("img/fondo.png.jpg"); /* <- TU NOMBRE EXACTO */
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -28,7 +28,6 @@
       font-family: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
     }
 
-    /* En móvil el marco grande se come espacio */
     @media (max-width: 520px){
       body{ border-width: 10px; }
     }
@@ -102,15 +101,11 @@
   </div>
 
   <script>
-    // Cambia esta fecha (año, mes-1, día). Marzo = 2
-    const fechaInicio = new Date(2025, 2, 9);
-
+    const fechaInicio = new Date(2025, 2, 9); // marzo = 2
     const hoy = new Date();
-    // evita que cambie el día por zona horaria al formatear
     hoy.setHours(12, 0, 0, 0);
 
-    const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
-
+    const opciones = { day:'numeric', month:'long', year:'numeric' };
     const inicioTexto = fechaInicio.toLocaleDateString('es-MX', opciones);
     const hoyTexto = hoy.toLocaleDateString('es-MX', opciones);
 
