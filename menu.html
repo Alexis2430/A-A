@@ -1,152 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nuestro espacio 💜</title>
 
-  <!-- Fuente cursiva -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Dancing Script', cursive;
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    :root{
+      --marco:#c8a2c8;
+
+      /* Lila oscuro */
+      --lila1:#3b1f4a;
+      --lila2:#23102d;
+
+      /* Rojo pastel para interacción */
+      --rojoPastel:#ff6b7a;
+      --rojoPastel2:#ff8a96;
+
+      --white: rgba(255,255,255,.96);
     }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #d9b3ff, #f3d1f4);
-      border: 18px solid #c8a2c8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+    body{
+      min-height:100vh;
+      background: radial-gradient(900px 600px at 25% 20%, rgba(200,162,200,.35), transparent 60%),
+                  radial-gradient(800px 520px at 80% 30%, rgba(200,162,200,.22), transparent 55%),
+                  linear-gradient(160deg, var(--lila1), var(--lila2));
+      border:18px solid var(--marco);
+      font-family:'Cormorant Garamond', Georgia, "Times New Roman", serif;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px 16px;
+      color:#fff;
     }
 
-    .menu {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    @media (max-width: 520px){
+      body{ border-width: 10px; }
     }
 
-    h1 {
-      text-align: center;
-      font-size: 3rem;
-      color: #5a2a6e;
-      margin-bottom: 20px;
+    .overlay{
+      width:100%;
+      max-width: 520px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 22px;
+      padding: 26px 18px;
+      text-align:center;
+      position: relative;
+      overflow:hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,.35);
+      animation: aparecer 1.1s ease forwards;
     }
 
-    .btn {
-      padding: 16px;
-      border-radius: 35px;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: white;
-      color: #7a2c82;
+    h1{
+      font-size: clamp(2.2rem, 7vw, 3.2rem);
+      letter-spacing: .2px;
+      margin-bottom: 14px;
+    }
+
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .btn{
+      display:block;
+      width:100%;
+      padding: 14px 18px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      color: var(--white);
+
+      font-size: 1.25rem;
       font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, filter .18s ease;
     }
 
-    .btn:hover {
-      background: #3cb371;
-      color: white;
-      font-weight: 700;
+    /* PC: hover */
+    .btn:hover{
+      background: linear-gradient(90deg, var(--rojoPastel), var(--rojoPastel2));
+      border-color: rgba(255,255,255,.22);
       transform: scale(1.05);
     }
 
-    .btn.disabled {
-      background: #e5e5e5;
-      color: #999;
-      cursor: not-allowed;
+    /* Teléfono: al tocar (press) */
+    .btn:active{
+      background: linear-gradient(90deg, var(--rojoPastel), var(--rojoPastel2));
+      border-color: rgba(255,255,255,.26);
+      transform: scale(1.03);
+      filter: brightness(0.98);
     }
 
-    .btn.disabled:hover {
-      background: #e5e5e5;
-      transform: none;
-      font-weight: 600;
+    /* Accesibilidad (teclado) */
+    .btn:focus-visible{
+      outline: 3px solid rgba(255, 107, 122, .55);
+      outline-offset: 3px;
     }
-    /* 💜 CORAZONES FLOTANDO */
-.corazon {
-  position: absolute;
-  bottom: -40px;
-  opacity: 0.85;
-  animation-name: flotar;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  pointer-events: none;
-}
 
-@keyframes flotar {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.9;
-  }
-  30% {
-    transform: translate(15px, -30vh) rotate(8deg);
-  }
-  50% {
-    transform: translate(-20px, -55vh) rotate(-10deg);
-    opacity: 0.85;
-  }
-  70% {
-    transform: translate(25px, -80vh) rotate(12deg);
-  }
-  100% {
-    transform: translate(-10px, -120vh) rotate(-6deg);
-    opacity: 0;
-  }
-}
-}
+    /* El primero lo dejamos “principal” desde el inicio (también lila-rosita sutil) */
+    .btn.primary{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    @keyframes aparecer{
+      from{ opacity:0; transform: translateY(18px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .footer{
+      margin-top: 14px;
+      font-size: 1.05rem;
+      opacity: .86;
+    }
+
+    /* Corazones */
+    .corazon{
+      position:absolute;
+      bottom:-40px;
+      opacity:0.85;
+      animation-name: flotar;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      pointer-events:none;
+      user-select:none;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,.25));
+    }
+
+    @keyframes flotar{
+      0%{ transform: translate(0, 0) rotate(0deg); opacity:0; }
+      10%{ opacity:0.9; }
+      30%{ transform: translate(15px, -30vh) rotate(8deg); }
+      50%{ transform: translate(-20px, -55vh) rotate(-10deg); opacity:0.85; }
+      70%{ transform: translate(25px, -80vh) rotate(12deg); }
+      100%{ transform: translate(-10px, -120vh) rotate(-6deg); opacity:0; }
+    }
   </style>
 </head>
 
 <body>
-  <div class="menu">
+  <div class="overlay">
     <h1>Para nosotros 💜</h1>
 
- <a href="primer_paso.html" class="btn">
-💜 El primer gran paso
-</a>
+    <div class="menu">
+      <a href="primer_paso.html" class="btn primary">💜 El primer gran paso</a>
+      <a href="cartitas.html" class="btn">🤍 Cartitas</a>
+      <a href="fotitos.html" class="btn">🤍 Fotitos</a>
+      <a href="mensajes.html" class="btn">🤍 Mensajes bonitos</a>
+      <a href="200_razones.html" class="btn">🤍 200 Razones para amarte</a>
+      <a href="sudokus.html" class="btn">Sudokus 🤍</a>
+    </div>
 
-<a href="cartitas.html" class="btn">
-🤍 Cartitas
-</a>
+    <div class="footer">Hecho con amor.</div>
 
-<a href="fotitos.html" class="btn">
-🤍 Fotitos
-</a>
-
-<a href="mensajes.html" class="btn">
-🤍 Mensajes bonitos
-</a>
-
-<a href="200_razones.html" class="btn">
-🤍 200 Razones para amarte
-</a>
-    
-    <button class="btn disabled">🤍 Próximamente</button>
-    <button class="btn disabled">🤍 Próximamente</button>
+    <span class="corazon" style="left: 5%;  font-size: 14px; animation-duration: 16s; animation-delay: 0s;">💜</span>
+    <span class="corazon" style="left: 18%; font-size: 28px; animation-duration: 9s;  animation-delay: 3s;">💗</span>
+    <span class="corazon" style="left: 27%; font-size: 20px; animation-duration: 13s; animation-delay: 1s;">💖</span>
+    <span class="corazon" style="left: 41%; font-size: 32px; animation-duration: 11s; animation-delay: 5s;">💞</span>
+    <span class="corazon" style="left: 52%; font-size: 16px; animation-duration: 18s; animation-delay: 2s;">💘</span>
+    <span class="corazon" style="left: 64%; font-size: 24px; animation-duration: 10s; animation-delay: 6s;">💜</span>
+    <span class="corazon" style="left: 73%; font-size: 18px; animation-duration: 14s; animation-delay: 4s;">💗</span>
+    <span class="corazon" style="left: 86%; font-size: 30px; animation-duration: 12s; animation-delay: 7s;">💖</span>
+    <span class="corazon" style="left: 94%; font-size: 15px; animation-duration: 20s; animation-delay: 1s;">💞</span>
   </div>
-<!-- 💥 Corazones flotando -->
-<span class="corazon" style="left: 5%;  font-size: 14px; animation-duration: 16s; animation-delay: 0s;">💜</span>
-<span class="corazon" style="left: 18%; font-size: 28px; animation-duration: 9s;  animation-delay: 3s;">💗</span>
-<span class="corazon" style="left: 27%; font-size: 20px; animation-duration: 13s; animation-delay: 1s;">💖</span>
-<span class="corazon" style="left: 41%; font-size: 32px; animation-duration: 11s; animation-delay: 5s;">💞</span>
-<span class="corazon" style="left: 52%; font-size: 16px; animation-duration: 18s; animation-delay: 2s;">💘</span>
-<span class="corazon" style="left: 64%; font-size: 24px; animation-duration: 10s; animation-delay: 6s;">💜</span>
-<span class="corazon" style="left: 73%; font-size: 18px; animation-duration: 14s; animation-delay: 4s;">💗</span>
-<span class="corazon" style="left: 86%; font-size: 30px; animation-duration: 12s; animation-delay: 7s;">💖</span>
-<span class="corazon" style="left: 94%; font-size: 15px; animation-duration: 20s; animation-delay: 1s;">💞</span>
 </body>
-
 </html>
-
