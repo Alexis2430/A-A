@@ -303,6 +303,14 @@
     @media (prefers-reduced-motion: reduce){
       .confetti-heart{ animation: none; opacity: 0; }
     }
+    /* Botón escondido (se deja ver pero más sutil) */
+.proHidden{
+  opacity: .58;
+  filter: saturate(.95);
+}
+.proHidden:hover, .proHidden:active{
+  opacity: 1;
+}
   </style>
 </head>
 
@@ -338,6 +346,7 @@
           <button class="btn secondary" id="check">Verificar (errores)</button>
           <button class="btn secondary" id="solve">Resolver</button>
           <a class="btn secondary" href="menu.html">Volver contigo 💜</a>
+          <a class="btn secondary proHidden" href="samurai.html">A ver si muy pro mi vida 🤍</a>
         </div>
 
         <div class="status" id="status"></div>
